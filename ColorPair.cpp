@@ -7,7 +7,7 @@ int numberOfMinorColors = sizeof(MinorColorNames) / sizeof(MinorColorNames[0]);
 
 std::string TelCoColorCoder::ColorPair::ToString() {
 	std::string colorPairStr = MajorColorNames[majorColor];
-	colorPairStr += " ";
+	colorPairStr += ", ";
 	colorPairStr += MinorColorNames[minorColor];
 	return colorPairStr;
 }
@@ -25,7 +25,21 @@ int TelCoColorCoder::GetPairNumberFromColor(MajorColor major, MinorColor minor) 
 
 void TelCoColorCoder::PrintColorCodeManual()
 {
+	cout << "  Color Code Manual :  \n";
+	cout << "----------------------------------------\n";
+	cout << "| Pair No. | Major Color, Minor Color  |\n";
+	cout << "----------------------------------------\n";
 
+	for (int majorclr = 0; majorclr < numberOfMajorColors; majorclr++)
+	{
+		for (int minorclr = 0; minorclr < numberOfMinorColors; minorclr++)
+		{
+			int PairNo = GetPairNumberFromColor(MajorColor(majorclr), MinorColor(minorclr));
+			cout << "| " << PairNo << string((PairNo < 10 ? 8 : 7), ' ').c_str();
+			string ColorName = GetColorFromPairNumber(PairNo).ToString();
+			cout << "| " << ColorName.c_str() << string(26 - ColorName.length(), ' ').c_str() << "|" << endl;
+		}
+	}
 
+	cout << "----------------------------------------\n";
 }
-

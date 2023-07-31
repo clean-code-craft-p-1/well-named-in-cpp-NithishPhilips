@@ -1,4 +1,3 @@
-#include "main.h"
 #include "ColorPair.h"
 #include <assert.h>
 
